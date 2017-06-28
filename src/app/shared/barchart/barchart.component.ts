@@ -10,7 +10,7 @@ import * as d3 from 'd3';
 export class BarchartComponent implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: Array<any>;
-  private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
+  private margin: any = { top: 20, bottom: 200, left: 30, right: 20};
   private chart: any;
   private width: number;
   private height: number;
@@ -58,12 +58,19 @@ export class BarchartComponent implements OnInit, OnChanges {
 
     // bar colors
     this.colors = d3.scaleLinear().domain([0, this.data.length]).range(<any[]>['red', 'blue']);
+    
 
     // x & y axis
     this.xAxis = svg.append('g')
       .attr('class', 'axis axis-x')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
-      .call(d3.axisBottom(this.xScale));
+      .call(d3.axisBottom(this.xScale))
+      .selectAll("text")
+        .style("text-anchor", "start")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(90)");
     this.yAxis = svg.append('g')
       .attr('class', 'axis axis-y')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
@@ -77,7 +84,8 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.colors.domain([0, this.data.length]);
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));
-
+  
+  
     let update = this.chart.selectAll('.bar')
       .data(this.data);
 

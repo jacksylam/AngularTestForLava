@@ -43,8 +43,18 @@ update(hero: Hero): Promise<Hero> {
 }
 
 create(name: string): Promise<Hero> {
+  let Energy = "K";
+  let Protein = Math.floor(Math.random() * 100);
+  let Fat = Math.floor(Math.random() * 10);
+  let Na = Math.floor(Math.random() * 10);
+  let Fiber = Math.floor(Math.random() * 1000);
+  let Carbs = Math.floor(Math.random() * 10);
+  let Sugar = Math.floor(Math.random() * 10);
+  let K = Math.floor(Math.random() *10);
+  let Vit = Math.floor(Math.random() * 1000);
+  let Score = Math.floor(Math.random() * 100);
   return this.http
-    .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+    .post(this.heroesUrl, JSON.stringify({Brand: name, Protein: Protein, Fat:Fat, Na:Na, Fiber:Fiber, Carbs:Carbs, Sugar:Sugar, K:K, Vit:Vit, Score:Score}), {headers: this.headers})
     .toPromise()
     .then(res => res.json().data as Hero)
     .catch(this.handleError);

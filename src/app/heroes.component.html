@@ -1,23 +1,60 @@
-<h2>My Heroes</h2>
+<h2>My Cereals</h2>
+
+<!--<ul class="heroes">
+  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
+      [class.selected]="hero === selectedHero">
+    <span class="badge">{{hero.id}}</span>
+    <span>{{hero.Brand}}</span>
+    <button class="delete"
+      (click)="delete(hero); $event.stopPropagation()">x</button>
+  </li>
+</ul>-->
+
+<table class="heroes-table">
+  <tr>
+  <th>id </th>
+  <th>Brand</th>
+  <th>Energy</th>
+  <th>Protein</th>
+  <th>Fat</th>
+  <th>Na</th>
+  <th>Fiber</th>
+  <th>Carbs</th>
+  <th>Sugar</th>
+  <th>K</th>
+  <th>Vit</th>
+  <th>Score</th>
+  </tr>
+ <tr *ngFor="let hero of heroes">
+
+    <td>{{ hero.id }}</td>
+    <td>{{ hero.Brand }}</td>
+    <td>{{ hero.Energy }}</td>
+    <td>{{ hero.Protein }}</td>
+    <td>{{ hero.Fat }}</td>
+    <td>{{ hero.Na }}</td>
+    <td>{{ hero.Fiber }}</td>
+    <td>{{ hero.Carbs }}</td>
+    <td>{{ hero.Sugar }}</td>
+    <td>{{ hero.K }}</td>
+    <td>{{ hero.Vit }}</td>
+    <td>{{ hero.Score }}</td>
+    <td> <button class="delete"
+      (click)="delete(hero); $event.stopPropagation()">x</button> </td>
+  </tr>
+</table>
 <div>
-  <label>Hero name:</label> <input #heroName />
+  <label>Cereal name:</label> <input #heroName />
   <button (click)="add(heroName.value); heroName.value=''">
     Add
   </button>
 </div>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-      [class.selected]="hero === selectedHero">
-    <span class="badge">{{hero.id}}</span>
-    <span>{{hero.name}}</span>
-    <button class="delete"
-      (click)="delete(hero); $event.stopPropagation()">x</button>
-  </li>
-</ul>
 <div *ngIf="selectedHero">
   <h2>
-    {{selectedHero.name | uppercase}} is my hero
+    {{selectedHero.Brand | uppercase}} is a cereal
   </h2>
   <button (click)="gotoDetail()">View Details</button>
   
 </div>
+
+<app-barchart *ngIf="chartData" [data]="chartData"></app-barchart>

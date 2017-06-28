@@ -31,17 +31,21 @@ export class DashboardComponent implements OnInit {
       this.generateData();
 
       // change the data periodically
-      setInterval(() => this.generateData(), 3000);
+      // setInterval(() => this.generateData(), 3000);
     }, 1000);
   }
 
   generateData() {
     this.chartData = [];
-    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-      this.chartData.push([
-        `Index ${i}`,
-        Math.floor(Math.random() * 100)
-      ]);
+    // for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
+    //   this.chartData.push([
+    //     `Index ${i}`,
+    //     Math.floor(Math.random() * 100)
+    //   ]);
+    // }
+
+    for (let i =0; i < this.heroes.length; i++){
+      this.chartData.push([this.heroes[i].Brand, this.heroes[i].Fat]);
     }
   }
 
