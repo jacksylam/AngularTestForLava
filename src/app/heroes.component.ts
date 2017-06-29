@@ -58,6 +58,8 @@ export class HeroesComponent implements OnInit {
      .then( () => this.generateData());
 
 }
+
+
   delete(hero: Hero): void {
   this.heroService
       .delete(hero.id)

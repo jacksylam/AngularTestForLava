@@ -65,16 +65,12 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('class', 'axis axis-x')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
       .call(d3.axisBottom(this.xScale))
-      .selectAll("text")
-        .style("text-anchor", "start")
-        .attr("y", 0)
-        .attr("x", 9)
-        .attr("dy", ".35em")
-        .attr("transform", "rotate(90)");
+      
     this.yAxis = svg.append('g')
       .attr('class', 'axis axis-y')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
       .call(d3.axisLeft(this.yScale));
+
   }
 
   updateChart() {
@@ -82,10 +78,17 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.xScale.domain(this.data.map(d => d[0]));
     this.yScale.domain([0, d3.max(this.data, d => d[1])]);
     this.colors.domain([0, this.data.length]);
-    this.xAxis.transition().call(d3.axisBottom(this.xScale));
+    this.xAxis.transition().call(d3.axisBottom(this.xScale)).selectAll("text")
+        .style("text-anchor", "start")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(90)");
     this.yAxis.transition().call(d3.axisLeft(this.yScale));
-  
-  
+
+
+
+    
     let update = this.chart.selectAll('.bar')
       .data(this.data);
 
@@ -114,6 +117,8 @@ export class BarchartComponent implements OnInit, OnChanges {
       .delay((d, i) => i * 10)
       .attr('y', d => this.yScale(d[1]))
       .attr('height', d => this.height - this.yScale(d[1]));
+
+  
   }
 }
 

@@ -16,6 +16,12 @@ import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroService }          from './hero.service';
 import {HeroSearchComponent} from './hero-search.component';
 import { BarchartComponent } from './shared/barchart/barchart.component';
+import { ThreeJSComponent } from './three-js/three-js/three-js.component';
+import { UnityComponent } from './unity/unity/unity.component';
+
+import { GoogleMapComponent } from './google-map/google-map/google-map.component';
+
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -24,7 +30,10 @@ import { BarchartComponent } from './shared/barchart/barchart.component';
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo'
+    })
   ],
   declarations: [
     AppComponent,
@@ -32,8 +41,10 @@ import { BarchartComponent } from './shared/barchart/barchart.component';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
-    HeroSearchComponent
-    
+    HeroSearchComponent,
+  ThreeJSComponent,
+  UnityComponent,
+  GoogleMapComponent
 
   ],
   providers: [ HeroService ],
